@@ -1,3 +1,4 @@
+using System.Reflection;
 using Dominio.Entities;
 using Microsoft.EntityFrameworkCore;
 
@@ -19,7 +20,12 @@ public class Incidenciascontext : DbContext
     public DbSet<Pais> Paises { get; set; }
     public DbSet<Genero> Generos { get; set; }
 
-
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<PersonaSalon>().HasKey(ps => new { ps.IdPersonaFk, ps.IdSalonFk });
+        base.OnModelCreating(modelBuilder);
+        modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+    }
 
 
 
