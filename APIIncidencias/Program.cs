@@ -1,4 +1,5 @@
 
+using APIIncidencias.Extensions;
 using Microsoft.EntityFrameworkCore;
 using Persistencia.Data;
 
@@ -10,7 +11,8 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-
+builder.Services.AddCors();
+builder.Services.AddAppServices();
 builder.Services.AddDbContext<Incidenciascontext>(options =>
 {
     string connectionString = builder.Configuration.GetConnectionString("ConexMysql");
@@ -24,7 +26,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
+app.UseCors("CorsPolicy");
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
