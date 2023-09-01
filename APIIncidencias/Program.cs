@@ -1,5 +1,7 @@
 
+using System.Reflection;
 using APIIncidencias.Extensions;
+using AspNetCoreRateLimit;
 using Microsoft.EntityFrameworkCore;
 using Persistencia.Data;
 
@@ -13,6 +15,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddCors();
 builder.Services.AddAppServices();
+builder.Services.AddAutoMapper(Assembly.GetEntryAssembly());
+builder.Services.ConfigureRatelimiting();
 builder.Services.AddDbContext<Incidenciascontext>(options =>
 {
     string connectionString = builder.Configuration.GetConnectionString("ConexMysql");
@@ -32,5 +36,7 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
-
+app.UseHttpsRedirection();
+app.UseIpRateLimiting();
+app.UseAuthorization();
 app.Run();

@@ -1,6 +1,8 @@
 namespace Dominio.Interfaces;
 
-public interface IUnitOfWork
+public interface IUnitOfWork 
 {
     IPersona Personas{ get; }
+
+    Task<int> SaveAsync();
 }
