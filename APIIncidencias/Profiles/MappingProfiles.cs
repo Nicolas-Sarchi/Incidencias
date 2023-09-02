@@ -10,5 +10,8 @@ namespace APIIncidencias.Profiles;
         {
         CreateMap<Persona, PersonaDto>().ReverseMap();
         CreateMap<Matricula, MatriculaDto>().ReverseMap();
+        CreateMap<Ciudad, CiudadDto>().ReverseMap();
+        CreateMap<Departamento, DepartamentoDto>().ReverseMap();
+        CreateMap<Pais, PaisDto>().ReverseMap();
         }
     }
