@@ -12,6 +12,9 @@ using Microsoft.Extensions.Logging;
 
 namespace APIIncidencias.Controllers;
 
+[ApiVersion("1.0")]
+[ApiVersion("1.1")]
+
 public class PersonaController : BaseApiController
 {
     private readonly IUnitOfWork unitOfWork;
@@ -24,6 +27,7 @@ public class PersonaController : BaseApiController
     }
 
     [HttpGet]
+    [MapToApiVersion("1.1")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<ActionResult<IEnumerable<PersonaDto>>> Get()

@@ -9,7 +9,10 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddControllers();
+builder.Services.AddControllers(options =>
+{
+    options.RespectBrowserAcceptHeader = true;
+}).AddXmlSerializerFormatters();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -17,6 +20,7 @@ builder.Services.AddCors();
 builder.Services.AddAppServices();
 builder.Services.AddAutoMapper(Assembly.GetEntryAssembly());
 builder.Services.ConfigureRatelimiting();
+builder.Services.ConfigureApiVersioning();
 builder.Services.AddDbContext<Incidenciascontext>(options =>
 {
     string connectionString = builder.Configuration.GetConnectionString("ConexMysql");
