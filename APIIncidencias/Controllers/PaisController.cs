@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using APIIncidencias.Dtos;
+using APIIncidencias.Helpers;
 using AutoMapper;
 using Dominio.Entities;
 using Dominio.Interfaces;
@@ -27,13 +28,24 @@ public class PaisController : BaseApiController
     }
 
     [HttpGet]
-    [MapToApiVersion("1.1")]
+    [MapToApiVersion("1.0")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<ActionResult<IEnumerable<PaisDto>>> Get()
     {
         var Paises = await unitOfWork.Paises.GetAllAsync();
         return _mapper.Map<List<PaisDto>>(Paises);
+    }
+
+    [HttpGet]
+    [MapToApiVersion("1.1")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<ActionResult<Pager<PaisXDepDto>>> Get11([FromQuery] Params paisParams)
+    {
+        var pais = await unitOfWork.Paises.GetAllAsync(paisParams.PageIndex, paisParams.PageSize, paisParams.Search);
+        var lstPaisesDto = _mapper.Map<List<PaisXDepDto>>(pais.registros);
+        return new Pager<PaisXDepDto>(lstPaisesDto, pais.totalRegistros, paisParams.PageIndex, paisParams.PageSize, paisParams.Search);
     }
 
     [HttpGet("{id}")]

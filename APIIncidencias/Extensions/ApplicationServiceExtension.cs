@@ -39,7 +39,7 @@ public static class ApplicationServiceExtension
                     {
                         Endpoint = "*",
                         Period = "10s",
-                        Limit = 2
+                        Limit = 5
                     }
             };
         });
@@ -49,7 +49,7 @@ public static class ApplicationServiceExtension
     {
         services.AddApiVersioning(options =>
         {
-            options.DefaultApiVersion = new ApiVersion(1, 0);
+            options.DefaultApiVersion = new ApiVersion(1,0);
             options.AssumeDefaultVersionWhenUnspecified = true;
             options.ApiVersionReader = ApiVersionReader.Combine(
                 new QueryStringApiVersionReader("ver"),
