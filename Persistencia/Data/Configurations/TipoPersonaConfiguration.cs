@@ -11,7 +11,5 @@ public class TipoPersonaConfiguration : IEntityTypeConfiguration<TipoPersona>
         builder.ToTable("tipo_persona");
 
         builder.Property(g => g.Descripcion).IsRequired().HasMaxLength(50);
-
-
     }
 }

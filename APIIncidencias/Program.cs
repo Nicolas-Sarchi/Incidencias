@@ -1,4 +1,3 @@
-
 using System.Reflection;
 using APIIncidencias.Extensions;
 using AspNetCoreRateLimit;
@@ -9,10 +8,13 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddControllers(options =>
-{
-    options.RespectBrowserAcceptHeader = true;
-}).AddXmlSerializerFormatters();
+builder.Services
+    .AddControllers(options =>
+    {
+        options.RespectBrowserAcceptHeader = true;
+    })
+    .AddXmlSerializerFormatters();
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

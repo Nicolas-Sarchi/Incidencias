@@ -13,7 +13,8 @@ namespace Aplicacion.Repository
     {
         protected readonly Incidenciascontext _context;
 
-        public CiudadRepository(Incidenciascontext context) : base(context)
+        public CiudadRepository(Incidenciascontext context)
+            : base(context)
         {
             _context = context;
         }
@@ -21,8 +22,6 @@ namespace Aplicacion.Repository
         public override async Task<IEnumerable<Ciudad>> GetAllAsync()
         {
             return await _context.Ciudades.Include(p => p.Personas).ToListAsync();
-
         }
-
     }
 }

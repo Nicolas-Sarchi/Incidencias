@@ -10,6 +10,6 @@ public class GeneroConfiguration : IEntityTypeConfiguration<Genero>
     {
         builder.ToTable("genero");
 
-        builder.Property(g  => g.NombreGenero).IsRequired().HasMaxLength(50);
+        builder.Property(g => g.NombreGenero).IsRequired().HasMaxLength(50);
     }
 }

@@ -10,12 +10,11 @@ public class MatriculaConfiguration : IEntityTypeConfiguration<Matricula>
     {
         builder.ToTable("matricula");
 
-        builder.HasOne(p => p.Persona)
-        .WithMany(p => p.Matriculas)
-        .HasForeignKey(p => p.IdPersonaFk);
+        builder
+            .HasOne(p => p.Persona)
+            .WithMany(p => p.Matriculas)
+            .HasForeignKey(p => p.IdPersonaFk);
 
-        builder.HasOne(s => s.Salon)
-        .WithMany(s => s.Matriculas)
-        .HasForeignKey(s => s.IdSalonFk);
+        builder.HasOne(s => s.Salon).WithMany(s => s.Matriculas).HasForeignKey(s => s.IdSalonFk);
     }
 }

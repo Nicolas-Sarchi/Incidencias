@@ -6,10 +6,9 @@ namespace Persistencia.Data;
 
 public class Incidenciascontext : DbContext
 {
-    public Incidenciascontext(DbContextOptions<Incidenciascontext> options) : base(options)
-    {
+    public Incidenciascontext(DbContextOptions<Incidenciascontext> options)
+        : base(options) { }
 
-    }
     public DbSet<Ciudad> Ciudades { get; set; }
     public DbSet<Persona> Personas { get; set; }
     public DbSet<Salon> Salones { get; set; }
@@ -26,9 +25,4 @@ public class Incidenciascontext : DbContext
         base.OnModelCreating(modelBuilder);
         modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
     }
-
-
-
-
-
 }

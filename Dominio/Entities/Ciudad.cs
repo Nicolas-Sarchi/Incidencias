@@ -9,5 +9,4 @@ public class Ciudad : BaseEntity
     public Departamento Departamento { get; set; }
 
     public ICollection<Persona> Personas { get; set; }
-
 }

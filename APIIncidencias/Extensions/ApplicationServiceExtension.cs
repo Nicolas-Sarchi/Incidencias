@@ -11,11 +11,13 @@ namespace APIIncidencias.Extensions;
 public static class ApplicationServiceExtension
 {
     public static void ConfigureCors(this IServiceCollection services) =>
-    services.AddCors(options =>
-    {
-        options.AddPolicy("CorsPolicy", builder =>
-        builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
-    });
+        services.AddCors(options =>
+        {
+            options.AddPolicy(
+                "CorsPolicy",
+                builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader()
+            );
+        });
 
     public static void AddAppServices(this IServiceCollection services)
     {
@@ -35,12 +37,12 @@ public static class ApplicationServiceExtension
             options.RealIpHeader = "X-Real-IP";
             options.GeneralRules = new List<RateLimitRule>
             {
-                    new RateLimitRule
-                    {
-                        Endpoint = "*",
-                        Period = "10s",
-                        Limit = 5
-                    }
+                new RateLimitRule
+                {
+                    Endpoint = "*",
+                    Period = "10s",
+                    Limit = 5
+                }
             };
         });
     }
@@ -49,13 +51,12 @@ public static class ApplicationServiceExtension
     {
         services.AddApiVersioning(options =>
         {
-            options.DefaultApiVersion = new ApiVersion(1,0);
+            options.DefaultApiVersion = new ApiVersion(1, 0);
             options.AssumeDefaultVersionWhenUnspecified = true;
             options.ApiVersionReader = ApiVersionReader.Combine(
                 new QueryStringApiVersionReader("ver"),
                 new HeaderApiVersionReader("X-Version")
-                );
+            );
         });
     }
 }
-

@@ -10,39 +10,32 @@ namespace Persistencia.Data.Migrations
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropForeignKey(
-                name: "FK_matricula_Salon_SalonId",
-                table: "matricula");
+            migrationBuilder.DropForeignKey(name: "FK_matricula_Salon_SalonId", table: "matricula");
 
             migrationBuilder.DropForeignKey(
                 name: "FK_matricula_persona_PersonaId",
-                table: "matricula");
+                table: "matricula"
+            );
 
-            migrationBuilder.DropIndex(
-                name: "IX_matricula_PersonaId",
-                table: "matricula");
+            migrationBuilder.DropIndex(name: "IX_matricula_PersonaId", table: "matricula");
 
-            migrationBuilder.DropIndex(
-                name: "IX_matricula_SalonId",
-                table: "matricula");
+            migrationBuilder.DropIndex(name: "IX_matricula_SalonId", table: "matricula");
 
-            migrationBuilder.DropColumn(
-                name: "PersonaId",
-                table: "matricula");
+            migrationBuilder.DropColumn(name: "PersonaId", table: "matricula");
 
-            migrationBuilder.DropColumn(
-                name: "SalonId",
-                table: "matricula");
+            migrationBuilder.DropColumn(name: "SalonId", table: "matricula");
 
             migrationBuilder.CreateIndex(
                 name: "IX_matricula_IdPersonaFk",
                 table: "matricula",
-                column: "IdPersonaFk");
+                column: "IdPersonaFk"
+            );
 
             migrationBuilder.CreateIndex(
                 name: "IX_matricula_IdSalonFk",
                 table: "matricula",
-                column: "IdSalonFk");
+                column: "IdSalonFk"
+            );
 
             migrationBuilder.AddForeignKey(
                 name: "FK_matricula_Salon_IdSalonFk",
@@ -50,7 +43,8 @@ namespace Persistencia.Data.Migrations
                 column: "IdSalonFk",
                 principalTable: "Salon",
                 principalColumn: "Id",
-                onDelete: ReferentialAction.Cascade);
+                onDelete: ReferentialAction.Cascade
+            );
 
             migrationBuilder.AddForeignKey(
                 name: "FK_matricula_persona_IdPersonaFk",
@@ -58,7 +52,8 @@ namespace Persistencia.Data.Migrations
                 column: "IdPersonaFk",
                 principalTable: "persona",
                 principalColumn: "Id",
-                onDelete: ReferentialAction.Cascade);
+                onDelete: ReferentialAction.Cascade
+            );
         }
 
         /// <inheritdoc />
@@ -66,55 +61,59 @@ namespace Persistencia.Data.Migrations
         {
             migrationBuilder.DropForeignKey(
                 name: "FK_matricula_Salon_IdSalonFk",
-                table: "matricula");
+                table: "matricula"
+            );
 
             migrationBuilder.DropForeignKey(
                 name: "FK_matricula_persona_IdPersonaFk",
-                table: "matricula");
+                table: "matricula"
+            );
 
-            migrationBuilder.DropIndex(
-                name: "IX_matricula_IdPersonaFk",
-                table: "matricula");
+            migrationBuilder.DropIndex(name: "IX_matricula_IdPersonaFk", table: "matricula");
 
-            migrationBuilder.DropIndex(
-                name: "IX_matricula_IdSalonFk",
-                table: "matricula");
+            migrationBuilder.DropIndex(name: "IX_matricula_IdSalonFk", table: "matricula");
 
             migrationBuilder.AddColumn<int>(
                 name: "PersonaId",
                 table: "matricula",
                 type: "int",
-                nullable: true);
+                nullable: true
+            );
 
             migrationBuilder.AddColumn<int>(
                 name: "SalonId",
                 table: "matricula",
                 type: "int",
-                nullable: true);
+                nullable: true
+            );
 
             migrationBuilder.CreateIndex(
                 name: "IX_matricula_PersonaId",
                 table: "matricula",
-                column: "PersonaId");
+                column: "PersonaId"
+            );
 
             migrationBuilder.CreateIndex(
                 name: "IX_matricula_SalonId",
                 table: "matricula",
-                column: "SalonId");
+                column: "SalonId"
+            );
 
             migrationBuilder.AddForeignKey(
                 name: "FK_matricula_Salon_SalonId",
                 table: "matricula",
                 column: "SalonId",
                 principalTable: "Salon",
-                principalColumn: "Id");
+                principalColumn: "Id"
+            );
 
             migrationBuilder.AddForeignKey(
                 name: "FK_matricula_persona_PersonaId",
                 table: "matricula",
                 column: "PersonaId",
                 principalTable: "persona",
-                principalColumn: "Id");
+                principalColumn: "Id"
+            );
         }
     }
 }

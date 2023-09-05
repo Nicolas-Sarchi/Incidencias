@@ -14,12 +14,14 @@ public class PersonaSalonConfiguration : IEntityTypeConfiguration<PersonaSalon>
 
         builder.Property(g => g.IdSalonFk).IsRequired();
 
-        builder.HasOne(p => p.Persona)
-        .WithMany(p => p.PersonaSalones)
-        .HasForeignKey(p => p.IdPersonaFk);
+        builder
+            .HasOne(p => p.Persona)
+            .WithMany(p => p.PersonaSalones)
+            .HasForeignKey(p => p.IdPersonaFk);
 
-        builder.HasOne(p => p.Salon)
-        .WithMany(p => p.PersonaSalones)
-        .HasForeignKey(p => p.IdSalonFk);
+        builder
+            .HasOne(p => p.Salon)
+            .WithMany(p => p.PersonaSalones)
+            .HasForeignKey(p => p.IdSalonFk);
     }
 }

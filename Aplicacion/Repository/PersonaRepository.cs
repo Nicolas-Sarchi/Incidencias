@@ -1,4 +1,3 @@
-
 using Dominio.Interfaces;
 using Dominio.Entities;
 using Microsoft.EntityFrameworkCore;
@@ -10,7 +9,8 @@ namespace Aplicacion.Repository
     {
         protected readonly Incidenciascontext _context;
 
-        public PersonaRepository(Incidenciascontext context) : base(context)
+        public PersonaRepository(Incidenciascontext context)
+            : base(context)
         {
             _context = context;
         }
@@ -18,8 +18,6 @@ namespace Aplicacion.Repository
         public override async Task<IEnumerable<Persona>> GetAllAsync()
         {
             return await _context.Personas.Include(p => p.Matriculas).ToListAsync();
-            
         }
-
     }
 }

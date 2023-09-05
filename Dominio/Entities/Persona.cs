@@ -2,8 +2,6 @@ namespace Dominio.Entities;
 
 public class Persona : BaseEntity
 {
-    
-
     public string NombrePersona { get; set; }
     public string ApellidoPersona { get; set; }
     public string DireccionPersona { get; set; }
@@ -16,6 +14,4 @@ public class Persona : BaseEntity
 
     public ICollection<Matricula> Matriculas { get; set; }
     public ICollection<PersonaSalon> PersonaSalones { get; set; }
-
-
 }

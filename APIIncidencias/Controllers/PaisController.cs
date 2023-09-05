@@ -15,7 +15,6 @@ namespace APIIncidencias.Controllers;
 
 [ApiVersion("1.0")]
 [ApiVersion("1.1")]
-
 public class PaisController : BaseApiController
 {
     private readonly IUnitOfWork unitOfWork;
@@ -43,9 +42,19 @@ public class PaisController : BaseApiController
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<ActionResult<Pager<PaisXDepDto>>> Get11([FromQuery] Params paisParams)
     {
-        var pais = await unitOfWork.Paises.GetAllAsync(paisParams.PageIndex, paisParams.PageSize, paisParams.Search);
+        var pais = await unitOfWork.Paises.GetAllAsync(
+            paisParams.PageIndex,
+            paisParams.PageSize,
+            paisParams.Search
+        );
         var lstPaisesDto = _mapper.Map<List<PaisXDepDto>>(pais.registros);
-        return new Pager<PaisXDepDto>(lstPaisesDto, pais.totalRegistros, paisParams.PageIndex, paisParams.PageSize, paisParams.Search);
+        return new Pager<PaisXDepDto>(
+            lstPaisesDto,
+            pais.totalRegistros,
+            paisParams.PageIndex,
+            paisParams.PageSize,
+            paisParams.Search
+        );
     }
 
     [HttpGet("{id}")]
@@ -60,10 +69,8 @@ public class PaisController : BaseApiController
     [HttpPost]
     [ProducesResponseType(StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-
     public async Task<ActionResult<Pais>> Post(PaisDto PaisDto)
     {
-
         var Pais = _mapper.Map<Pais>(PaisDto);
         this.unitOfWork.Paises.Add(Pais);
         await unitOfWork.SaveAsync();
@@ -80,7 +87,6 @@ public class PaisController : BaseApiController
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-
     public async Task<ActionResult<PersonaDto>> Put(int id, [FromBody] PersonaDto personaDto)
     {
         if (personaDto == null)
@@ -96,7 +102,6 @@ public class PaisController : BaseApiController
     [HttpDelete("{id}")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-
     public async Task<IActionResult> Delete(int id)
     {
         var persona = await unitOfWork.Personas.GetByIdAsync(id);
@@ -107,6 +112,4 @@ public class PaisController : BaseApiController
         await unitOfWork.SaveAsync();
         return NoContent();
     }
-
-
 }

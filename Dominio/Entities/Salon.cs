@@ -8,6 +8,4 @@ public class Salon : BaseEntity
     public ICollection<Matricula> Matriculas { get; set; }
 
     public ICollection<PersonaSalon> PersonaSalones { get; set; }
-
-
 }

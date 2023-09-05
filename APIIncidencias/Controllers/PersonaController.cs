@@ -14,7 +14,6 @@ namespace APIIncidencias.Controllers;
 
 [ApiVersion("1.0")]
 [ApiVersion("1.1")]
-
 public class PersonaController : BaseApiController
 {
     private readonly IUnitOfWork unitOfWork;
@@ -48,15 +47,13 @@ public class PersonaController : BaseApiController
     [HttpPost]
     [ProducesResponseType(StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-
     public async Task<ActionResult<Persona>> Post(PersonaDto personaDto)
     {
-
         var persona = _mapper.Map<Persona>(personaDto);
         this.unitOfWork.Personas.Add(persona);
         await unitOfWork.SaveAsync();
 
-        if(persona == null)
+        if (persona == null)
         {
             return BadRequest();
         }
@@ -68,10 +65,9 @@ public class PersonaController : BaseApiController
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-
-    public async Task<ActionResult<PersonaDto>> Put(int id, [FromBody]PersonaDto personaDto)
+    public async Task<ActionResult<PersonaDto>> Put(int id, [FromBody] PersonaDto personaDto)
     {
-        if(personaDto == null)
+        if (personaDto == null)
         {
             return NotFound();
         }
@@ -84,7 +80,6 @@ public class PersonaController : BaseApiController
     [HttpDelete("{id}")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-
     public async Task<IActionResult> Delete(int id)
     {
         var persona = await unitOfWork.Personas.GetByIdAsync(id);
@@ -95,6 +90,4 @@ public class PersonaController : BaseApiController
         await unitOfWork.SaveAsync();
         return NoContent();
     }
-
-
 }
